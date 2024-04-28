@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block body %}
+    <h1>Kmom Redovisning</h1>
+    
+    <div id="kmom01" {% if app.request.query.get('kmom') == 'kmom01' %} style="scroll-margin-top: 50px;" {% endif %}>
+        <h2>Kmom01</h2>
+        <p>My experience with an object-oriented language is related to a python course, where I had to work with classes.</p>
+        <p>Basic things for creating classes are: Class serve as templates for creating objects with common properties and methods. Properties and Methods define the behavior of the class. Constructors are special methods used to initialize new objects upon creation. Basic understanding of concepts of inheritance and polymorphism, where a class can inherit properties and methods from another class and exhibit different behaviors. Knowing how to use encapsulation to restrict access to a class's members and protect its internal state.</p>
+        <p>My code consists of Symphony framework for PHP. Then twig template engine. The base of the website is under templetes, where with the help of twig, html is created and it is easier to manipulate by linking pages. Then, the dynamic part of the page is placed in src/Controller, there is part of the Lucky Number code, as well as where routes are placed and created. I use app.css for styling my page.</p>
+        <p>Regarding php the right way, i didnt have a time to read it all, i just took a glance, and there is a part about templating which is interesting for me, because i want to make my work easier, i see huge adventage working with frameworks and templates. The part about databases and servers seem interesting for reading as well.</p>
+        <p>TIL: I can say working with Symphony and making a ground for a webpage where in the future it would be easier working with big systems.</p>
+    </div>
+    
+    <div id="kmom02" {% if app.request.query.get('kmom') == 'kmom02' %} style="scroll-margin-top: 50px;" {% endif %}>
+        <h2>Kmom02 Redovisning</h2>
+        <p>Redovisningstext for Kmom02...</p>
+    </div>
+    
+{% endblock %}

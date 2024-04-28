@@ -1,0 +1,73 @@
+:root {
+    --color-primary: #fe4a49;
+    --color-secondary: #2ab7ca;
+    --color-accent: #fed766;
+    --color-background: #e6e6ea;
+    --color-text: #f4f4f8;
+  }
+
+body {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+body {
+    background: var(--color-background);
+    background-size: cover;
+}
+
+h1 {
+    border-bottom: 4px double #ccc;
+}
+
+#mypic {
+    width: 400px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+nav {
+    background-color: var(--color-primary);
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+  color: var(--color-text);
+  text-decoration: none;
+  /* padding: 10px; */
+  font-size: 18px; /* Increase the font size */
+}
+
+nav ul li a:hover {
+    background-color: var(--color-secondary);
+}
+  
+  /* Headings styles */
+h1, h2, h3 {
+    color: var(--color-primary);
+}
+  
+  /* Link styles */
+a {
+    color: var(--color-secondary);
+}
+  
+a:hover {
+    color: var(--color-accent);
+}
+
+footer {
+    padding: 1px;
+    /* color: var(--color-text);
+    background-color: var(--color-primary); */
+}
