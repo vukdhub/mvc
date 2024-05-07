@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<h1>Roll dice hand</h1>
+
+<p>You rolled {{ num_dices }} dices. Here is the value of the dices.</p>
+
+<ul>
+    {% for suit in ['Hearts', 'Diamonds', 'Clubs', 'Spades'] %}
+        <li>{{ suit }}</li>
+        <ul>
+            {% for value in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'] %}
+                {% for card in deck %}
+                    {% if card.getSuit() == suit and card.getValue() == value %}
+                        <li>{{ card.getAsString() }}</li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</ul>
+
+<p>Try to roll 
+    <a href="{{ path('test_dicehand', {num: 5}) }}">5</a>
+    or 
+    <a href="{{ path('test_dicehand', {num: 10}) }}">10</a>
+    dices.
+</p>
+{% endblock %}

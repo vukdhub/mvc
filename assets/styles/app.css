@@ -8,7 +8,7 @@
 
 body {
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 600px;
 }
 
 body {
@@ -70,4 +70,24 @@ footer {
     padding: 1px;
     /* color: var(--color-text);
     background-color: var(--color-primary); */
+}
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
 }

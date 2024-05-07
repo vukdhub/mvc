@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Sorted Cards{% endblock %}
+
+{% block body %}
+    <h1>Sorted Deck of Cards</h1>
+
+    <ul>
+        {% for card in cards %}
+            <li>{{ card.getAsString() }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

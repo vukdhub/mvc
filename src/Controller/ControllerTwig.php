@@ -48,7 +48,7 @@ class ControllerTwig extends AbstractController
         $kursmoment = $request->query->get('kmom');
 
         if ($kursmoment === null) {
-            $kursmoment = 'kmom01'; 
+            $kursmoment = 'kmom01';
         }
 
         $redovisningstext = $this->getRedovisningstext($kursmoment);
@@ -69,5 +69,4 @@ class ControllerTwig extends AbstractController
 
         return $redovisningstextArray[$kmom] ?? 'Redovisningstext not found';
     }
-
 }

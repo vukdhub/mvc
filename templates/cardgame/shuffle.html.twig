@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Deck{% endblock %}
+
+{% block body %}
+<h1>Shuffle Deck</h1>
+
+<p>
+    <ul>
+        {% for card in cards%}
+            <li>{{ card.getAsString() }}</li>
+        {% endfor %}
+    </ul>
+</p>
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}
