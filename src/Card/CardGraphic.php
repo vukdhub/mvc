@@ -4,21 +4,30 @@ namespace App\Card;
 
 class CardGraphic extends Card
 {
-    protected $graphic;
-
-    public function __construct($suit, $rank, $graphic)
+    public function getGraphicRepresentation(): string
     {
-        parent::__construct($suit, $rank);
-        $this->graphic = $graphic;
+        $rank = $this->getRank();
+        $suit = $this->getSuitSymbol();
+
+        // For ranks greater than 10, use their corresponding names (Jack, Queen, King, Ace)
+        $rank = ($rank == '10') ? $rank : substr($rank, 0, 1);
+
+        return "[$rank$suit]";
     }
 
-    public function getGraphic()
+    protected function getSuitSymbol(): string
     {
-        return $this->graphic;
-    }
-
-    public function getAsString(): string
-    {
-        return $this->rank . ' of ' . $this->suit . ' (Graphic: ' . $this->graphic . ')';
+        switch ($this->getSuit()) {
+            case self::HEARTS:
+                return '♥';
+            case self::DIAMONDS:
+                return '♦';
+            case self::CLUBS:
+                return '♣';
+            case self::SPADES:
+                return '♠';
+            default:
+                return '';
+        }
     }
 }

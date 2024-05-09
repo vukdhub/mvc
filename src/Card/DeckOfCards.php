@@ -13,10 +13,10 @@ class DeckOfCards
     {
         $this->cards = [];
         $suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
-        $ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+        $ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
         foreach ($suits as $suit) {
             foreach ($ranks as $rank) {
-                $this->cards[] = new Card($suit, $rank);
+                $this->cards[] = new CardGraphic($suit, $rank);
             }
         }
     }
@@ -40,16 +40,33 @@ class DeckOfCards
     {
         // Define a custom comparison function for sorting
         usort($this->cards, function ($a, $b) {
-            // Convert ranks to numeric values for comparison
-            $ranks = ['2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10, 'Jack' => 11, 'Queen' => 12, 'King' => 13, 'Ace' => 14];
-            $rankA = $ranks[$a->getRank()];
-            $rankB = $ranks[$b->getRank()];
+            // Compare suits first
+            $suitOrder = ['Hearts' => 1, 'Diamonds' => 2, 'Clubs' => 3, 'Spades' => 4];
+            $suitOrderA = $suitOrder[$a->getSuit()];
+            $suitOrderB = $suitOrder[$b->getSuit()];
 
-            // Compare ranks
-            if ($rankA == $rankB) {
-                return 0;
+            if ($suitOrderA === $suitOrderB) {
+                // If suits are equal, compare ranks
+                $ranksOrder = ['Ace' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10, 'Jack' => 11, 'Queen' => 12, 'King' => 13];
+                $rankA = $ranksOrder[$a->getRank()];
+                $rankB = $ranksOrder[$b->getRank()];
+                return $rankA <=> $rankB; // Compare ranks
             }
-            return ($rankA < $rankB) ? -1 : 1;
+
+            return $suitOrderA <=> $suitOrderB; // Compare suits
         });
     }
+
+    public function drawRandomCard()
+    {
+        $index = mt_rand(0, count($this->cards) - 1); // Generate a random index
+        return array_splice($this->cards, $index, 1)[0]; // Remove and return the card at the random index
+    }
+
+
+
+
+
+
+
 }

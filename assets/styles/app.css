@@ -91,3 +91,13 @@ footer {
 .flash-warning:before {
     content: "⚠";
 }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.card {
+    margin-right: 5px; /* Adjust as needed for spacing */
+}

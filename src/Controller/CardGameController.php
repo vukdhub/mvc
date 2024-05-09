@@ -86,20 +86,33 @@ class CardGameController extends AbstractController
     }
 
 
+    #[Route("/card/deck/draw", name: "draw_card")]
+    public function drawCard(SessionInterface $session): Response
+    {
+        // Get the deck of cards from the session or create a new one if it doesn't exist
+        $deck = $session->get('deck_of_cards', new DeckOfCards());
 
+        // Draw a single card from the deck
+        $drawnCard = $deck->drawRandomCard();
 
+        // Store the drawn card in the session
+        $drawnCards = $session->get('drawn_cards', []);
+        $drawnCards[] = $drawnCard;
+        $session->set('drawn_cards', $drawnCards);
 
-    // #[Route("/card/deck/shuffle", name: "shuffle_deck")]
-    // public function shuffleDeck(SessionInterface $session): Response
-    // {
-    //     // Implement logic to shuffle the deck
-    // }
+        // Update the session to reflect the number of remaining cards
+        $remainingCards = count($deck->getCards());
+        $session->set('remaining_cards', $remainingCards);
 
-    // #[Route("/card/deck/draw", name: "draw_card")]
-    // public function drawCard(SessionInterface $session): Response
-    // {
-    //     // Implement logic to draw a single card
-    // }
+        // Update or set the deck of cards in the session
+        $session->set('deck_of_cards', $deck);
+
+        // Render the response (you might want to adjust this based on your application)
+        return $this->render('cardgame/draw_card.html.twig', [
+            'drawn_card' => $drawnCard,
+            'remaining_cards' => $remainingCards
+        ]);
+    }
 
     // #[Route("/card/deck/draw/{number}", name: "draw_multiple_cards")]
     // public function drawMultipleCards(int $number, SessionInterface $session): Response
