@@ -59,14 +59,18 @@ class DeckOfCards
 
     public function drawRandomCard()
     {
-        $index = mt_rand(0, count($this->cards) - 1); // Generate a random index
-        return array_splice($this->cards, $index, 1)[0]; // Remove and return the card at the random index
+        $index = mt_rand(0, count($this->cards) - 1);
+        return array_splice($this->cards, $index, 1)[0];
     }
 
-
-
-
-
-
-
+    public function drawMultipleCards(int $number)
+    {
+        $drawnCards = [];
+        for ($i = 0; $i < $number; $i++) {
+            if (!empty($this->cards)) {
+                $drawnCards[] = $this->drawRandomCard();
+            }
+        }
+        return $drawnCards;
+    }
 }

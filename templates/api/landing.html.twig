@@ -9,4 +9,26 @@
             <li><a href="{{ route.url }}">{{ route.name }}</a></li>
         {% endfor %}
     </ul>
+    <form method="post" action="{{ path('shuffle_cards_api') }}">
+        <button type="submit">Shuffle Deck</button>
+    </form>
+
+    <form method="post" action="{{ path('api_deck_draw') }}">
+        <button type="submit">Draw Single Card</button>
+    </form>
+
+    <form id="num"method="post" action="{{ path('api_multiple', {'number': 1}) }}">
+        <input type="number" name="number" min="1" value="1">
+        <button type="submit">Draw Multiple Cards</button>
+    </form>
+    <script>
+        document.getElementById('num').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var numberInput = form.querySelector('input[name="number"]');
+            var number = parseInt(numberInput.value);
+            form.action = "{{ path('api_multiple', {'number': '__number__'}) }}".replace('__number__', number);
+            form.submit();
+        });
+    </script>
 {% endblock %}

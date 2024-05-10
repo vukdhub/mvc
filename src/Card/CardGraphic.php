@@ -9,7 +9,6 @@ class CardGraphic extends Card
         $rank = $this->getRank();
         $suit = $this->getSuitSymbol();
 
-        // For ranks greater than 10, use their corresponding names (Jack, Queen, King, Ace)
         $rank = ($rank == '10') ? $rank : substr($rank, 0, 1);
 
         return "[$rank$suit]";

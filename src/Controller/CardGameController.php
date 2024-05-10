@@ -17,7 +17,6 @@ class CardGameController extends AbstractController
     #[Route("/session/", name: "landing_page")]
     public function landingPage(SessionInterface $session): Response
     {
-        // Get and dump the session data for debugging
         $sessionData = $session->all();
         dump($sessionData);
 
@@ -29,13 +28,10 @@ class CardGameController extends AbstractController
     #[Route("/session/delete", name: "delete_session")]
     public function deleteSession(SessionInterface $session): Response
     {
-        // Clear all data in the session
         $session->clear();
 
-        // Add a flash message to provide feedback to the user
         $this->addFlash('success', 'Session has been cleared.');
 
-        // Redirect back to the landing page
         return $this->redirectToRoute('landing_page');
     }
 
@@ -53,12 +49,10 @@ class CardGameController extends AbstractController
         $session->clear();
 
         $deck = new DeckOfCards();
-        $deck->shuffle(); // Shuffle the deck
+        $deck->shuffle();
 
-        // Store the deck in the session
         $session->set('deck', $deck);
 
-        // Pass the cards to the Twig template
         return $this->render('cardgame/shuffle.html.twig', [
             'cards' => $deck->getCards(),
         ]);
@@ -67,19 +61,14 @@ class CardGameController extends AbstractController
     #[Route("/game/card/sorted", name: "sorted_cards")]
     public function displaySortedCards(SessionInterface $session): Response
     {
-        // Clear the session
         $session->clear();
 
-        // Create a new deck
         $deck = new DeckOfCards();
 
-        // Sort the cards
-        $deck->sort(); // You need to implement this method in DeckOfCards class
+        $deck->sort();
 
-        // Store the deck in the session
         $session->set('deck', $deck);
 
-        // Pass the sorted cards to the Twig template
         return $this->render('cardgame/sorted.html.twig', [
             'cards' => $deck->getCards(),
         ]);
@@ -89,35 +78,45 @@ class CardGameController extends AbstractController
     #[Route("/card/deck/draw", name: "draw_card")]
     public function drawCard(SessionInterface $session): Response
     {
-        // Get the deck of cards from the session or create a new one if it doesn't exist
         $deck = $session->get('deck_of_cards', new DeckOfCards());
 
-        // Draw a single card from the deck
         $drawnCard = $deck->drawRandomCard();
 
-        // Store the drawn card in the session
         $drawnCards = $session->get('drawn_cards', []);
         $drawnCards[] = $drawnCard;
         $session->set('drawn_cards', $drawnCards);
 
-        // Update the session to reflect the number of remaining cards
         $remainingCards = count($deck->getCards());
         $session->set('remaining_cards', $remainingCards);
 
-        // Update or set the deck of cards in the session
         $session->set('deck_of_cards', $deck);
 
-        // Render the response (you might want to adjust this based on your application)
         return $this->render('cardgame/draw_card.html.twig', [
             'drawn_card' => $drawnCard,
             'remaining_cards' => $remainingCards
         ]);
     }
 
-    // #[Route("/card/deck/draw/{number}", name: "draw_multiple_cards")]
-    // public function drawMultipleCards(int $number, SessionInterface $session): Response
-    // {
-    //     // Implement logic to draw multiple cards
-    // }
+    #[Route("/game/card/deck/draw/{number<\d+>?5}", name: "draw_cards")]
+    public function drawCards(int $number = 5, SessionInterface $session): Response
+    {
+        $deck = $session->get('deck_of_cards', new DeckOfCards());
+
+        $drawnCards = $deck->drawMultipleCards($number);
+
+        $drawnCardsSession = $session->get('drawn_cards', []);
+        $drawnCardsSession = array_merge($drawnCardsSession, $drawnCards);
+        $session->set('drawn_cards', $drawnCardsSession);
+
+        $remainingCards = count($deck->getCards());
+        $session->set('remaining_cards', $remainingCards);
+
+        $session->set('deck_of_cards', $deck);
+
+        return $this->render('cardgame/draw_multi_cards.html.twig', [
+            'drawn_cards' => $drawnCards,
+            'remaining_cards' => $remainingCards
+        ]);
+    }
 
 }
