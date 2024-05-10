@@ -38,7 +38,10 @@ class CardGameController extends AbstractController
     #[Route("/game/card", name: "card_game")]
     public function cards()
     {
-        return $this->render('/cardgame/home.html.twig');
+        $imageUrl = [
+            'imageUrl' => './img/umlcardgame.jpg',
+        ];
+        return $this->render('/cardgame/home.html.twig', $imageUrl);
     }
 
     #[Route("/game/card/shuffle", name: "shuffle_game")]

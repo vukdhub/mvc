@@ -11,7 +11,19 @@
     <li><a href="{{ path('draw_card') }}">Draw a Card</a></li>
     <li><a href="{{ path('draw_cards') }}">Draw Multiple Cards</a></li>
 </ul>
-<p>hello</p>
+<h1>Classes</h1>
+<p>
+    Card och CardGraphic representerar spelkort med olika egenskaper och metoder för att hämta deras värden och grafiska representationer.
+    CardHand representerar en hand av spelkort, där man kan lägga till och hämta kort från handen.
+    DeckOfCards representerar en lek av spelkort och innehåller metoder för att skapa, blanda och dra kort från leken.
+</p>
+<h4>Relationer mellan klasserna:</h4>
+<p>
+    DeckOfCards har en komposition relation med CardGraphic, då den innehåller instanser av CardGraphic för att representera individuella kort i leken.
+    DeckOfCards har också en användningsrelation med CardHand, då den tillhandahåller metoder för att dra kort som kan användas av CardHand för att lägga till kort i handen under spelets gång.
+    Klassen Card och dess subklass CardGraphic representerar egenskaper och metoder för enskilda spelkort, vilka används av klassen DeckOfCards för att skapa en lek av spelkort samt av klassen CardHand för att hantera spelkort i en hand.
+</p>
+<img src="{{ asset(imageUrl) }}" alt="Uml image">
 
 {% for label, messages in app.flashes %}
     {% for message in messages %}

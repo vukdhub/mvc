@@ -17,7 +17,6 @@ class ControllerTwig extends AbstractController
         $imageUrls = [
             './img/image1.png',
             './img/image2.jpg',
-
         ];
         $randomImageUrl = $imageUrls[array_rand($imageUrls)];
 
