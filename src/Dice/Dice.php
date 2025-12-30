@@ -4,11 +4,11 @@ namespace App\Dice;
 
 class Dice
 {
-    protected $value;
+    protected int $value;
 
     public function __construct()
     {
-        $this->value = null;
+        $this->roll(); 
     }
 
     public function roll(): int
@@ -19,7 +19,7 @@ class Dice
 
     public function getValue(): int
     {
-        return $this->value ?? 0;
+        return $this->value;
     }
 
     public function getAsString(): string

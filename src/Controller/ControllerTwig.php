@@ -44,9 +44,9 @@ class ControllerTwig extends AbstractController
     public function report(Request $request): Response
     {
         // Get the kursmoment from the URL fragment
-        $kursmoment = $request->query->get('kmom');
+        $kursmoment = (string) $request->query->get('kmom');
 
-        if ($kursmoment === null) {
+        if ($kursmoment === '') {
             $kursmoment = 'kmom01';
         }
 

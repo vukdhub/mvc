@@ -7,7 +7,10 @@ use App\Card\Card;
 
 class DeckOfCards
 {
-    protected $cards;
+    /**
+     * @var Card[]
+     */
+    protected array $cards;
 
     public function __construct()
     {
@@ -21,22 +24,28 @@ class DeckOfCards
         }
     }
 
-    public function shuffle()
+    public function shuffle(): bool
     {
-        shuffle($this->cards);
+        return shuffle($this->cards);
     }
 
-    public function drawCard()
+    /**
+     * @return Card|null
+     */
+    public function drawCard(): ?Card
     {
         return array_pop($this->cards);
     }
 
-    public function getCards()
+    /**
+     * @return Card[]
+     */
+    public function getCards(): array
     {
         return $this->cards;
     }
 
-    public function sort()
+    public function sort(): void
     {
         // Define a custom comparison function for sorting
         usort($this->cards, function ($a, $b) {
@@ -57,13 +66,17 @@ class DeckOfCards
         });
     }
 
-    public function drawRandomCard()
+    public function drawRandomCard(): Card
     {
         $index = mt_rand(0, count($this->cards) - 1);
         return array_splice($this->cards, $index, 1)[0];
     }
 
-    public function drawMultipleCards(int $number)
+    /**
+     * @param int $number
+     * @return Card[]
+     */
+    public function drawMultipleCards(int $number): array
     {
         $drawnCards = [];
         for ($i = 0; $i < $number; $i++) {

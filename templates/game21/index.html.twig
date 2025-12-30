@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game 21{% endblock %}
+
+{% block body %}
+    <h1>Game 21</h1>
+    <p>The game “21” is a card game, a version of BlackJack. The goal is to get as close to the value 21 as possible without exceeding it.The player draws cards one at a time and can choose to stop at any moment. When the player stops, the bank takes over. The bank draws cards until it has at least 17 points. The player wins if the total is closer to 21 than the bank’s, or if the bank exceeds 21. Note that Aces count as either 1 or 14, depending on what benefits the hand.</p>
+    <form action="{{ path('play_21') }}" method="post">
+        <button class="buttonic" type="submit">Start Game</button>
+    </form>
+{% endblock %}

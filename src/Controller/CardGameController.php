@@ -36,7 +36,7 @@ class CardGameController extends AbstractController
     }
 
     #[Route("/game/card", name: "card_game")]
-    public function cards()
+    public function cards(): Response
     {
         $imageUrl = [
             'imageUrl' => './img/umlcardgame.jpg',
@@ -101,7 +101,7 @@ class CardGameController extends AbstractController
     }
 
     #[Route("/game/card/deck/draw/{number<\d+>?5}", name: "draw_cards")]
-    public function drawCards(int $number = 5, SessionInterface $session): Response
+    public function drawCards(SessionInterface $session, int $number = 5): Response
     {
         $deck = $session->get('deck_of_cards', new DeckOfCards());
 

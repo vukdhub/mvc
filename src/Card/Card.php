@@ -17,26 +17,26 @@ class Card
     ];
 
 
-    protected $suit;
-    protected $rank;
+    protected string $suit;
+    protected string $rank;
 
-    public function __construct($suit, $rank)
+    public function __construct(string $suit, string $rank)
     {
         $this->suit = $suit;
         $this->rank = $rank;
     }
 
-    public function getSuit()
+    public function getSuit(): string
     {
         return $this->suit;
     }
 
-    public function getRank()
+    public function getRank(): string
     {
         return $this->rank;
     }
 
-    public function getSuitColor()
+    public function getSuitColor(): ?string
     {
         return self::SUIT_COLORS[$this->suit] ?? null;
     }
@@ -44,5 +44,23 @@ class Card
     public function getAsString(): string
     {
         return $this->rank . ' of ' . $this->suit;
+    }
+
+    public function getValue(): int
+    {
+        $rank = $this->rank;
+
+        // Number cards 2–10
+        if (is_numeric($rank)) {
+            return (int)$rank;
+        }
+
+        return match ($rank) {
+            'Ace' => 11,
+            'Jack' => 12,
+            'Queen', => 13,
+            'King' => 14,
+            default => 0
+        };
     }
 }

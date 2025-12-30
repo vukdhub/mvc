@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game 21{% endblock %}
+
+{% block body %}
+    <h1>Game 21</h1>
+    
+    <h2>Your Hand: {{ total }}</h2>
+    <ul>
+        {% for card in drawnCards %}
+            <li>{{ card.getGraphicRepresentation() }}</li>
+        {% else %}
+            <li>No cards drawn yet.</li>
+        {% endfor %}
+    </ul>
+
+    {% if dealerHand %}
+        <h2>Dealer hand ({{ dealerTotal }} points)</h2>
+
+        {% for card in dealerHand.getCards() %}
+            {{ card.getGraphicRepresentation() }}
+        {% endfor %}
+
+        <h2>
+            {% if result == 'player' %}
+                ✅ You win!
+            {% elseif result == 'dealer' %}
+                ❌ Dealer wins!
+            {% endif %}
+        </h2>
+    {% endif %}
+
+    {% if message %}
+        <h2>{{ message }}</h2>
+    {% endif %}
+
+    {# Button to draw a card #}
+    {% if gameState == 'playing' %}
+        <form action="{{ path('game_21_draw') }}" method="post">
+            <button class="buttonic" type="submit">Draw a Card</button>
+        </form>
+
+        {% if drawnCards|length > 0 %}
+            <form action="{{ path('game_21_stop') }}" method="post">
+                <button class="buttonic" type="submit">Stop</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+    {% if gameState == 'ended' %}
+        <form action="{{ path('game_21_reset') }}" method="post">
+            <button class="buttonic" type="submit">Play again</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

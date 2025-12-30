@@ -10,7 +10,6 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     
@@ -24,6 +23,7 @@
                 <li><a href="{{ path('api_landing') }}">API</a></li>
                 <li><a href="{{ path('card_game') }}">Card Game</a></li>
                 <li><a href="{{ path('landing_page') }}">Session</a></li>
+                <li><a href="{{ path('game_21') }}">Game 21</a></li>
             </ul>
         </nav>
         <main>
