@@ -136,5 +136,10 @@ class Game21Controller extends AbstractController
         ]);
     }
 
+    #[Route("/game21/doc", name: "doc")]
+    public function gameDoc(SessionInterface $session): Response
+    {
+        return $this->render('game21/doc.html.twig');
+    }
 
 }

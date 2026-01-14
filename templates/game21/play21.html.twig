@@ -8,7 +8,9 @@
     <h2>Your Hand: {{ total }}</h2>
     <ul>
         {% for card in drawnCards %}
-            <li>{{ card.getGraphicRepresentation() }}</li>
+            <li><span class="card {{ card.getSuitColor() }}">
+                {{ card.getGraphicRepresentation() }}
+            </span></li>
         {% else %}
             <li>No cards drawn yet.</li>
         {% endfor %}
@@ -18,7 +20,9 @@
         <h2>Dealer hand ({{ dealerTotal }} points)</h2>
 
         {% for card in dealerHand.getCards() %}
-            {{ card.getGraphicRepresentation() }}
+            <span class="card {{ card.getSuitColor() }}">
+                {{ card.getGraphicRepresentation() }}
+            </span>
         {% endfor %}
 
         <h2>

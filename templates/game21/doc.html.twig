@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dokumentation{% endblock %}
+
+{% block body %}
+    <h1>Game 21 Dokumentation</h1>
+    <h3>Gameflow :</h3>
+    <img src="{{ asset('img/game21flow.jpg') }}" alt="Game flow" id="flowchart">
+    <h3>Pseudocode :</h3>
+    <img src="{{ asset('img/pseudocode.png') }}" alt="Pseudocode text" id="pseudocode">
+
+    <h2>Klassbeskrivningar</h2>
+    <p> - Klassen Card representerar ett enskilt spelkort i en standardkortlek.
+    Varje kort har en färg (Hearts, Diamonds, Clubs eller Spades) och en rang (till exempel 2–10, Jack, Queen, King eller Ace).
+    Klassen tillhandahåller metoder för att hämta kortets färg och rang, avgöra färgen på kortets symbol (röd eller svart), returnera en läsbar strängrepresentation av kortet samt beräkna kortets numeriska värde baserat på dess rang.</p>
+    <p> - Klassen CardGraphic ärver från klassen Card och används för att skapa en grafisk representation av ett spelkort. Den innehåller en metod som omvandlar kortets rang till en symbolbaserad sträng, till exempel [A♥] eller [10♠]. </p>
+    <p> - Klassen CardHand representerar en hand med spelkort.
+    Den används för att lagra kort som tillhör en spelare och erbjuder funktioner för att lägga till kort och hämta alla kort i handen.
+    Klassen kan även beräkna det totala poängvärdet för handen enligt spelets regler, där ess kan räknas som antingen högt eller lågt värde.
+    Dessutom innehåller klassen en metod för att avgöra om spelet är över, det vill säga om handens totala poäng överstiger 21.</p>
+    <p> - Klassen Game21Finish ansvarar för att avsluta en spelomgång i Game 21.
+    Den hanterar bankens spel genom att dra kort tills banken har minst 17 poäng.
+    Därefter jämförs spelarens och bankens totala poäng för att avgöra vem som vinner omgången.
+    Resultatet returneras tillsammans med bankens hand och används för att visa spelets slutresultat.</p>
+{% endblock %}

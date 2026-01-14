@@ -5,7 +5,7 @@ namespace App\Card;
 class CardHand
 {
     /**
-     * @var Card[] 
+     * @var Card[]
      */
     protected $cards = [];
 
