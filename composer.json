@@ -1,4 +1,6 @@
 {
+    "name": "vukdajic/my-project",
+    "description": "My PHP course MVC projects with documentation",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -80,6 +82,8 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd"
         },
+        "phpdoc": "XDEBUG_MODE=off tools/phpdoc/phpdoc run -d ./src -t ./docs/api",
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "post-install-cmd": [
             "@auto-scripts"
         ],

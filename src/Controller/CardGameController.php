@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\DeckOfCards\DeckOfCards;
+use App\Card\DeckOfCards;
 use App\Card\CardHand;
 use App\Card\CardGraphic;
 

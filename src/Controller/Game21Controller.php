@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\DeckOfCards\DeckOfCards;
+use App\Card\DeckOfCards;
 use App\Card\CardHand;
 use App\Card\CardGraphic;
-use App\Functions\Game21Finish;
+use App\Services\Game21Finish;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
