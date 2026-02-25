@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="book-view">
+    <h2>{{ book.title }}</h2>
+
+    <img src="{{ asset('img/' ~ book.cover) }}" alt="{{ book.title }}" class="book-cover">
+
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+    <ul class="book-links">
+        <li>
+            <a href="{{ path('library_edit', { id: book.id }) }}">Update</a>
+        </li>
+        <li>
+            <a href="{{ path('library_delete', { id: book.id }) }}"
+            onclick="return confirm('Are you sure?');">
+            Delete
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('library_view') }}">Back to books</a>
+        </li>
+    </ul>
+
+</div>
+{% endblock %}

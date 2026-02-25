@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Edit Book</h2>
+
+<form method="POST" class="book-form">
+
+  <div class="form-row">
+    <label>Title</label>
+    <input type="text" name="title" value="{{ book.title }}" required>
+  </div>
+
+  <div class="form-row">
+    <label>Author</label>
+    <input type="text" name="author" value="{{ book.author }}" required>
+  </div>
+
+  <div class="form-row">
+    <label>ISBN</label>
+    <input type="text" name="isbn" value="{{ book.isbn }}" required>
+  </div>
+
+  <div class="form-row">
+    <label>Image filename</label>
+    <input type="text" name="cover" value="{{ book.cover }}" required>
+  </div>
+
+  <button type="submit">Update Book</button>
+</form>
+{% endblock %}

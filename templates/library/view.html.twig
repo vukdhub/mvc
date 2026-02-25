@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<section class="books-table-section">
+    <a href="{{ path('library') }}">Back</a>
+
+  <div class="container">
+    <h2>All Books</h2>
+
+    <div class="table-wrapper">
+      <table class="books-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cover</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for book in books %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>
+                <img src="{{ asset('img/' ~ book.cover) }}" alt="{{ book.title }}">
+              </td>
+              
+              <td><a href="{{ path('book_by_id', { id: book.id }) }}">
+        {{ book.title }}
+    </a></td>
+              <td>{{ book.author }}</td>
+              <td>{{ book.isbn }}</td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="5" class="no-data">No books found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

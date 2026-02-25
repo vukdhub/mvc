@@ -15,7 +15,8 @@ class ApiLandingController extends AbstractController
         $apiRoutes = [
             ['name' => 'Quote', 'url' => $this->generateUrl('api_quote')],
             ['name' => 'Full Deck Sorted', 'url' => $this->generateUrl('sorted_cards_api')],
-            ['name' => 'Game 21', 'url' => $this->generateUrl('play_21_api')]
+            ['name' => 'Game 21', 'url' => $this->generateUrl('play_21_api')],
+            ['name' => 'Library', 'url' => $this->generateUrl('library_json')]
         ];
 
         return $this->render('api/landing.html.twig', [
