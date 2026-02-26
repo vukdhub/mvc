@@ -23,6 +23,10 @@
         </testsuite>
     </testsuites>
 
+    <logging>
+        <junit outputFile="docs/junit.xml" />
+    </logging>
+
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
